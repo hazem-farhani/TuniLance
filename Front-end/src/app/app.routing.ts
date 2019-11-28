@@ -6,16 +6,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsComponent } from './_components/components.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { LandingComponent } from './components/landing/landing.component';
+import { HomeComponent } from './components/home/home.component';
 import { NucleoiconsComponent } from './_components/nucleoicons/nucleoicons.component';
+import {SigninComponent} from './components/signin/signin.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home2', component: ComponentsComponent },
     { path: 'user-profile', component: ProfileComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'signin', component: SignupComponent },
-    { path: 'home', component: LandingComponent },
+    { path: 'signin', component: SigninComponent },
+    { path: 'home', component: HomeComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent }
 ];
 

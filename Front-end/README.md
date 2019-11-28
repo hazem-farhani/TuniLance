@@ -134,8 +134,8 @@ paper-kit-2-angular
 │   │   ├── landing
 │   │   │   ├── landing.component.html
 │   │   │   ├── landing.component.scss
-│   │   │   ├── landing.component.spec.ts
-│   │   │   └── landing.component.ts
+│   │   │   ├── home.component.spec.ts
+│   │   │   └── home.component.ts
 │   │   ├── profile
 │   │   │   ├── profile.component.html
 │   │   │   ├── profile.component.scss

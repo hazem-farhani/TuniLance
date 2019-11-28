@@ -41,6 +41,6 @@ export class NavbarComponent implements OnInit {
     };
 
     removeHeader_Footer() {
-        return this.router.url === '/signin' || this.router.url === 'signup';
+        return this.router.url === '/signin' || this.router.url === '/signup';
     }
 }

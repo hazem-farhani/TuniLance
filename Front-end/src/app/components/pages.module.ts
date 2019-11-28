@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { LandingComponent } from './landing/landing.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import {RouterModule} from '@angular/router';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
     imports: [
@@ -16,9 +17,10 @@ import {RouterModule} from '@angular/router';
         RouterModule,
     ],
     declarations: [
-        LandingComponent,
+        HomeComponent,
         SignupComponent,
-        ProfileComponent
+        ProfileComponent,
+        SigninComponent
     ]
 })
 export class PagesModule { }
