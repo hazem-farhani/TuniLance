@@ -1,0 +1,4 @@
+service {photo, description, timeRequired, price} -> user et services et comments
+category {name} -> services
+skills {name, level}-> user
+comments {content, rating} -> user et services

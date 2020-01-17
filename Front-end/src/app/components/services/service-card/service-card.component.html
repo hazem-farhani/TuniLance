@@ -1,0 +1,27 @@
+
+<div class="card" style="width: 300px;height:24rem;display:block">
+  <div class="card-img-top">
+    <ngb-carousel [interval]="false">
+      <ng-template ngbSlide>
+      <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide" style="height:200px;">
+      <div class="carousel-caption">
+        <p></p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="./assets/img/federico-beccari.jpg" alt="Random second slide" style="height:200px;">
+      <div class="carousel-caption">
+        <p>Somewhere else</p>
+      </div>
+    </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="card-body" (click)="gotoDetails()" style="cursor:pointer">
+    <h6 class="card-title">{{service.title}} <br> Wassim - level 5</h6>
+    <p class="card-text">{{service.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Rating: {{service.rating}} (use stars later)</li>
+    <li class="list-group-item">{{service.price}}$</li>
+  </ul>
+</div>
