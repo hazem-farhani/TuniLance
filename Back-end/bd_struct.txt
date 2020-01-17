@@ -2,3 +2,6 @@ service {photo, description, timeRequired, price} -> user et services et comment
 category {name} -> services
 skills {name, level}-> user
 comments {content, rating} -> user et services
+user{firstName,lastName,username,email,password,country,dateOfBirth,phoneNumber,photo,skills(array),
+services(array)}
+

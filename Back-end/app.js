@@ -1,13 +1,21 @@
 const express = require('express');
 const expressValidator = require('express-validator');
+var passport   = require('passport')
+var bodyParser = require('body-parser')
 const db = require('./config/database');
+var cors = require('cors');
+
+
 
 app = express();
+app.use(cors());
 
 // Body Parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(passport.initialize());
+require('./config/passport')(passport);
 // Routes
 app.use('/', require('./routes/users'));
 app.use('/services', require('./routes/services'));

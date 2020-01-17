@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Service } from '../../models/service.model';
+import { ServicesService } from '../../services/services.service';
 
 @Component({
     selector: 'app-landing',
@@ -9,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   focus: any;
   focus1: any;
+  private topServices = null;
+  constructor(private servicesService: ServicesService) { }
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.servicesService.getTopServices().subscribe(
+      services => {
+        console.log(services);
+        this.topServices = services;
+      }
+    )
+  }
 
 }

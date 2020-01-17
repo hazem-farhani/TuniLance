@@ -9,6 +9,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { NucleoiconsComponent } from './_components/nucleoicons/nucleoicons.component';
 import {SigninComponent} from './components/signin/signin.component';
+import {ServiceDetailsComponent} from './components/services/service-details/service-details.component';
+import {SearchComponent} from './components/search/search.component';
+import { ServiceAddComponent } from './components/services/service-add/service-add.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +20,10 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'nucleoicons', component: NucleoiconsComponent }
+    { path: 'nucleoicons', component: NucleoiconsComponent },
+    { path: 'service/add', component: ServiceAddComponent },
+    { path: 'service/:id', component: ServiceDetailsComponent },
+    { path: 'search/:keyword', component: SearchComponent }
 ];
 
 @NgModule({

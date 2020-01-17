@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'navbar-transparent':!navbarFixed()}" color-on-scroll="500">
     <div class="container" *ngIf="!removeHeader_Footer()">
 
         <div class="navbar-translate" >
@@ -14,8 +14,16 @@
             <ul class="navbar-nav ml-sm-3">
                 <li class="nav-item">
                 <div class="input-group nav-search" [ngClass]="{'input-group-focus':focus===true}">
-                    <input type="text" class="form-control nav-search" placeholder="Search" (focus)="focus=true" (blur)="focus=false" >
-                    <div class="input-group-append">
+                    <input
+                      type="text"
+                      class="form-control nav-search"
+                      placeholder="Search"
+                      (focus)="focus=true"
+                      (blur)="focus=false"
+                      [(ngModel)]="keyword"
+                      (keyup.enter)="search()"
+                      >
+                    <div class="input-group-append" style="cursor:pointer" (click)="search()">
                         <span class="input-group-text nav-search"><i class="fa fa-search" aria-hidden="true"></i></span>
                     </div>
                 </div>

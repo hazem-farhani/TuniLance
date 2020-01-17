@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         photo: {
             type: DataTypes.STRING
         },
+        title: {
+            type: DataTypes.STRING
+        },
         description: {
             type: DataTypes.STRING
         },
@@ -17,8 +20,11 @@ module.exports = (sequelize, DataTypes) => {
         price: {  //In dollars?
             type: DataTypes.FLOAT,
             allowNull: false,
+        },
+        rating: {
+            type: DataTypes.INTEGER
         }
     });
-  
+
     return Service;
 }

@@ -24,17 +24,22 @@ export class AppComponent implements OnInit {
             }else{
                 window.document.activeElement.scrollTop = 0;
             }
-            this.navbar.sidebarClose();
         });
         this.renderer.listenGlobal('window', 'scroll', (event) => {
             const number = window.scrollY;
-            if (number > 150 || window.pageYOffset > 150) {
-                // add logic
-                navbar.classList.remove('navbar-transparent');
-            } else {
-                // remove logic
-                navbar.classList.add('navbar-transparent');
+            if(this.router.url === '/home') {
+              if (number > 150 || window.pageYOffset > 150)  {
+                  // add logic
+                  navbar.classList.remove('navbar-transparent');
+              } else {
+                  // remove logic
+                  navbar.classList.add('navbar-transparent');
+              }
             }
+            else {
+              navbar.classList.remove('navbar-transparent');
+            }
+
         });
         var ua = window.navigator.userAgent;
         var trident = ua.indexOf('Trident/');

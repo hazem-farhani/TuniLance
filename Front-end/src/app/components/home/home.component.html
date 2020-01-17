@@ -5,7 +5,7 @@
             <h1>The Best Website for<br /> Freelancing in Tunisia</h1>
             <h3>An opportuniy to make the most out of your ideas</h3>
             <br /><br />
-            <a href="#"
+            <a routerLink="/service/add"
                class="btn btn-outline-neutral btn-round mx-5">Post a Task</a>
 
             <a href="#"
@@ -67,15 +67,16 @@
 </div>
 
 <div class="section section-dark text-center">
-    <div class="container">
+    <div class="container" *ngIf="!topServices">
+        <h2 class="title">LOADING... TODO: PUT A SPINNER HERE</h2>
+    </div>
+    <div class="container" *ngIf="topServices">
         <h2 class="title">Most Popular</h2>
         <br>
         <div class="row">
-            <div class="col-md-4">1st card</div>
-            <div class="col-md-4">2nd card</div>
-            <div class="col-md-4">3rd card</div>
+            <div class="col-md-4 auto" *ngFor="let service of topServices"><app-service-card [service]="service"></app-service-card></div>
         </div>
-        <div class="row" *ngIf="">
+        <div class="row" *ngIf=""> <!--delete this later -->
             <div class="col-md-4">
                 <div class="card card-profile card-plain">
                     <div class="card-avatar">
