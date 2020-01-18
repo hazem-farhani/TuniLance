@@ -22,7 +22,10 @@ import { SearchComponent } from './components/search/search.component';
 import { ServiceAddComponent } from './components/services/service-add/service-add.component';
 import { CommentListComponent } from './components/services/comment-list/comment-list.component';
 import { CommentComponent } from './components/services/comment-list/comment/comment.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule, MatInputModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,11 @@ import { CommentComponent } from './components/services/comment-list/comment/com
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

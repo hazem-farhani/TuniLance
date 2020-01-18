@@ -3,61 +3,152 @@
         <div class="filter"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                    <div class="col-md-10 col-sm-12 mr-auto ml-auto">
                       <div class="card card-register">
-
-                          <h3 class="title">Welcome</h3>
-                          <div class="social-line text-center">
+					    <h3 class="title">Welcome</h3>
+                          <!--<div class="social-line text-center">
                               <a href="#pablo" *ngIf="false" class="btn btn-neutral btn-facebook btn-just-icon">
                                   <i class="fa fa-facebook-square"></i>
                               </a>
-                          </div>
-                          <form class="register-form">
+                          </div>-->
+							<mat-horizontal-stepper [linear] = "true" #stepper
+								style="background-color:#FF8F5E">			
+						   <mat-step [stepControl] = "firstFormGroup" >
+						   <ng-template matStepLabel>Account Details</ng-template>
+							<form class="register-form" [formGroup] = "firstFormGroup">
                               <label>Email</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                              <div class="input-group form-group-no-border">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">
                                       <i class="nc-icon nc-email-85"></i>
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="email" class="form-control" placeholder="Email" formControlName = "email" required >
+								  
                               </div>
-
                               <label>Username</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                              <div class="input-group form-group-no-border">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">
                                       <i class="nc-icon nc-email-85"></i>
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="text" class="form-control" placeholder="Username" formControlName = "username" required>
+								  
                               </div>
 
                               <label>Password</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                      <i class="nc-icon nc-key-25"></i>
-                                  </span>
-                                </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
-                              </div>
-
-                              <label>Confirm Password</label>
-                              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                              <div class="input-group form-group-no-border">
                                   <div class="input-group-prepend">
                                   <span class="input-group-text">
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="text" class="form-control" placeholder="Confirm Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="password" class="form-control" placeholder="Password" formControlName = "password">
+                              </div>
+
+                              <label>Confirm Password</label>
+                              <div class="input-group form-group-no-border">
+                                  <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-key-25"></i>
+                                  </span>
+                                  </div>
+                                  <input type="password" class="form-control form-control-danger" [ngClass]="{'form-control-danger': firstFormGroup.errors?.passwordsMatch!=null}" placeholder="Confirm Password" formControlName = "passConfirm">
                               </div>
                               <br/>
-                              <button class="btn btn-danger btn-block btn-round">Register</button>
+							  <div  *ngIf="firstFormGroup.errors?.passwordsMatch!=null && (firstFormGroup.touched || firstFormGroup.dirty)"  class="cross-validation-error-message alert alert-danger">
+									Passwords must match.
+								</div>
+                              <button class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
                           </form>
+				   </mat-step>
+  <mat-step [stepControl]="firstFormGroup">
+  						   <ng-template matStepLabel>Personal Details</ng-template>
+							<form class="register-form" [formGroup] = "firstFormGroup">
+                              <label>First Name</label>
+                              <div class="input-group form-group-no-border">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-email-85"></i>
+                                  </span>
+                                </div>
 
+                                  <input type="email" class="form-control" placeholder="Email" formControlName = "firstname" required >
+								  
+                              </div>
+                              <label>Last Name</label>
+                              <div class="input-group form-group-no-border">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-email-85"></i>
+                                  </span>
+                                </div>
+
+                                  <input type="text" class="form-control" placeholder="Username" formControlName = "lastname" required>
+								  
+                              </div>
+
+                              <label>Country</label>
+                              <div class="input-group form-group-no-border">
+                                  <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-key-25"></i>
+                                  </span>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="Password" formControlName = "country">
+                              </div>
+
+                              <label>Date of birth</label>
+                              <div class="input-group form-group-no-border">
+                                  <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-key-25"></i>
+                                  </span>
+                                  </div>
+                                  <input type="date" class="form-control" placeholder="Confirm Password" formControlName = "date">
+                              </div>
+							  
+							  <label>Phone number</label>
+                              <div class="input-group form-group-no-border">
+                                  <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                      <i class="nc-icon nc-key-25"></i>
+                                  </span>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="Confirm Password" formControlName = "phone">
+                              </div>
+                              <br/>
+                              <button class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
+                          </form>
+  </mat-step>
+					  <mat-step [stepControl] = "secondFormGroup">
+					  <form [formGroup] = "secondFormGroup">
+						 <ng-template matStepLabel>Payement Details</ng-template>
+						 <mat-form-field>
+						 <mat-label><mat-icon>favorite</mat-icon> Adress</mat-label>
+						   <input matInput placeholder = "Address" formControlName = "secondCtrl" required>
+						 </mat-form-field>
+						 <div>
+						   <button mat-button matStepperPrevious>Back</button>
+						   <button mat-button matStepperNext>Next</button>
+						 </div>
+					  </form>
+				   </mat-step>
+				   <mat-step>
+					  <ng-template matStepLabel>Done</ng-template>
+						 Details taken.
+					  <div>
+						 <button mat-button matStepperPrevious>Back</button>
+						 <button mat-button (click) = "stepper.reset()">Reset</button>
+					  </div>
+				   </mat-step>
+				</mat-horizontal-stepper>
+						  
+
+						  
                       </div>
                     </div>
                 </div>

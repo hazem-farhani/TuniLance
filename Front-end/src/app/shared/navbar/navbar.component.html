@@ -8,7 +8,14 @@
 
             <ul class="navbar-nav ml-sm-5">
                 <li class="nav-item">
-                    <a routerLink="/categories" class="nav-link">Categories</a>
+					<div ngbDropdown class="d-inline-block dropdown">
+						<a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Categories</a>
+						<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger">
+							<a class="dropdown-item">Categ</a>
+							<a class="dropdown-item">Categ</a>
+							<a class="dropdown-item">Categ</a>
+						</div>
+					</div>
                 </li>
             </ul>
             <ul class="navbar-nav ml-sm-3">
