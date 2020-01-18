@@ -1,10 +1,12 @@
 var bcrypt = require('bcrypt-nodejs');
 const { Op } = require("sequelize");
 
+
 //eluserDAO ya5ou comme param db object
 var userDAO=module.exports=function(db){
     //njib el users mta3i mel db.Users bech ne5dem alihom
     this.Users=db.Users;
+    this.db=db;
 }
 
 function hashPassword(password) {
@@ -16,8 +18,16 @@ function hashPassword(password) {
 
 //nasna3 fonction list of all users w naadiha comme param callback function
 userDAO.prototype.list=function(callback){
-    this.Users.findAll()
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
+    this.Users.findAll(/*{
+        include:[{
+            model:this.db.Skills,
+            as:'skills'
+        }]
+    }*/)
     .then(users => {
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
+        console.log(users);
         if(!users)return callback(Error("there are no users"));
         return callback(null,users);
     })
@@ -29,7 +39,15 @@ userDAO.prototype.getUser=function(id,callback){
     this.Users.findAll({
         where: {
             id:id
-        }
+        },
+        include:[{
+            model:this.db.Skills,
+            as:'skills'
+        },
+        {
+            model:this.db.Services,
+            as:'services'
+        }]
     })
     .then(user=>{
         if(!user)return callback(Error("there is no user with this id"));

@@ -6,8 +6,8 @@ const database = require('../config/database');
 //CENTRALIZE SERVICEDAO INSTANCE
 //IMPLEMENT LOGGER
 //Get all services
-router.get('/', (req, res) => {
-    Service.findAll()
+router.get('/list', (req, res) => {
+    database.Services.findAll()
     .then(services => res.json(services));
 })
 

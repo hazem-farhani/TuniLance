@@ -2,17 +2,29 @@ const serviceDAO = module.exports = function(database){
   this.Services = database.Services;
   this.Sequelize = database.Sequelize;
   this.sequelize = database.sequelize;
+  this.db=database;
 }
 
 serviceDAO.prototype.getService = function(id, next, error) {
-  this.Services.findByPk(id)
+  this.Services.findByPk(id,{
+    include:[{
+       model:this.db.Comments,
+       as:'comments'
+    }]
+  })
   .then(service => service? next(service): error(Error(`There is no service with ${id}`)))
   .catch(err => error(err))
 }
 
 serviceDAO.prototype.getServicesByTitle = function(title, next, error) {
   const Op = this.Sequelize.Op;
-  this.Services.findAll({ where : {title: {[Op.like]:`%${title}%`} }})
+  this.Services.findAll({
+         where : {title: {[Op.like]:`%${title}%`} },
+         include:[{
+          model:this.db.Comments,
+          as:'comments'
+      }]
+     })
   .then(services => next(services))
   .catch(err => error(err))
 }
@@ -20,7 +32,11 @@ serviceDAO.prototype.getServicesByTitle = function(title, next, error) {
 serviceDAO.prototype.getTopServices = function(limit, next, error) {
   this.Services.findAll({
     order: [[this.sequelize.col('rating'), 'DESC']],
-    limit:3
+    limit:3,
+    include:[{
+      model:this.db.Comments,
+      as:'comments'
+     }]
   })
   .then(services => services? next(services): error(Error(`There isn't enough services`)))
   .catch(err => error(err))

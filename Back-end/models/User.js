@@ -36,11 +36,34 @@ const User = sequelize.define('users', {
         type: DataTypes.STRING
     }
     
-})
+},{timestamps:false});
 
 User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
  };
+
+ User.associate=function(db){
+
+     db.Users.hasMany(db.Skills,{
+         foreignKey:"userId",
+         as:"skills"
+     });
+
+     db.Users.hasMany(db.Services,{
+         foreignKey:'userId',
+         as:'services'
+     });
+
+     db.Users.hasMany(db.Comments,{
+        foreignKey:'userId',
+        as:'comments'
+    });
+
+    db.Users.hasMany(db.Orders,{
+        foreignKey:'userId',
+        as:'orders'
+    });
+ }
 
 return User;
 };

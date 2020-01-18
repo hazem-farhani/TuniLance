@@ -1,8 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('skill', {
+    return sequelize.define('skills', {
+        id:{
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement:true
+        },
         name: {
             type: DataTypes.STRING,
-            PrimaryKey: true,
+        },
+        userId:{
+            type:DataTypes.INTEGER,
+            references: {
+                model: 'users',
+                key: 'id'
+            }
         }
-    })
+    },{timestamps:false})
 }
