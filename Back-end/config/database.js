@@ -4,6 +4,7 @@ const CategoryModel = require('../models/Category');
 const CommentModel = require('../models/Comment');
 const SkillModel = require('../models/Skill');
 const UserModel = require('../models/User');
+const OrderModel = require('../models/Order');
 //Connect to mysql db
 const sequelize = new Sequelize('tunilance','root','', {
     host: 'localhost',
@@ -28,19 +29,28 @@ sequelize.sync({ force: false, alter: true})
 });
 
 var db={}
-db.Sequelize=Sequelize;
-db.sequelize=sequelize;
 //creating models and putting them in db object 
 const Services = ServiceModel(sequelize, Sequelize.DataTypes);
 const Categories = CategoryModel(sequelize, Sequelize.DataTypes);
 const Comments = CommentModel(sequelize, Sequelize.DataTypes);
 const Skills = SkillModel(sequelize, Sequelize.DataTypes);
 const Users = UserModel(sequelize, Sequelize.DataTypes);
+const Orders = OrderModel(sequelize, Sequelize.DataTypes);
 db.Users=Users;
 db.Services=Services;
 db.Categories=Categories;
 db.Comments=Comments;
 db.Skills=Skills;
+db.Orders=Orders;
+
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
+
+db.Sequelize=Sequelize;
+db.sequelize=sequelize;
 module.exports=db;
 
 

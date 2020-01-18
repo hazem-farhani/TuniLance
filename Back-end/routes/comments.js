@@ -1,41 +1,71 @@
 const router = require('express').Router();
 const { Comment } = require('../config/database');
 const { validationRules, validate} = require('../middlewares/commentValidator');
+const commentDAO=require('../dao/commentDAO');
+const db=require('../config/database');
 
-router.get('/', (req, res) => {
-    Comment.findAll()
-    .then(comments => res.json(comments));
+
+//list of comments
+router.get('/list', (req, res) => {
+    var user=req.user;
+    var commentDao=new commentDAO(db);
+    commentDao.list(user,(err,comments)=>{
+        if(err)return res.status(404).json({
+            "Error":err.message
+        });
+        else return res.status(200).json(comments);
+    })
 })
 
 //Get comment
 router.get('/:commentId', (req, res) => {
-    console.log(req.params.commentId);
-    Comment.findByPk(req.params.commentId)
-    .then(comment => res.json(comment));
-})
+    var user=req.user;
+    var commentDao=new commentDAO(db);
+    commentDao.get(user,commentId,(err,comment)=>{
+        if(err)return res.status(404).json({
+            "Error":err.message
+        });
+        else return res.status(200).json(comment);
+    })
+});
 
 //Create comment
-router.post('/', validationRules('createComment'), validate, (req, res) => {
-    console.log(req.body);
-    Comment.create(req.body)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json({ err: 'Verify your request body'}));
+router.post('/add', validationRules('createComment'), validate, (req, res) => {
+    var commentDao=new commentDAO(db);
+    var comment=req.body;
+    var user=req.user;
+    commentDao.create(user,comment,(err,createdComment)=>{
+        if(err)return res.status(401).json({
+            "Error":err.message
+        });
+        else return res.status(200).json(createdComment);
+    });
 })
 
 //Update comment
-router.put('/:commentId', validationRules('createComment'), validate, (req, res) => {
-    const values = req.body;
-    const condition = {where: {id: req.params.commentId}}
-    const options = {multi: true}
-    Comment.update(values, condition, options)
-    .then(rowsUpdate => res.json(rowsUpdate))
+router.put('/update/:commentId', validationRules('createComment'), validate, (req, res) => {
+    var newComment = req.body;
+    var commentDao=new commentDAO(db);
+    var user=req.user;
+    var commentId=req.params.commentId;
+    if(commentId!=newComment.id)return res.status(400).json({"Error":"you cannot update this comment"})
+    commentDao.update(user,comment,(err,updatedComment)=>{
+        if(err)return res.status(400).json({
+            "Error":err.message
+        });
+        else return res.status(200).json(updatedComment);
+    });
 })
 
 //Delete comment
-router.delete('/:commentId', (req, res) => {
-    const condition = {where: {id: req.params.commentId}}
-    Comment.destroy(condition)
-    .then(rowsDelete => res.json(rowsDelete))
+router.delete('/delete/:commentId', (req, res) => {
+    var commentDao=new commentDAO(db);
+    var user=req.user;
+    var commentId=req.params.commentId;
+    commentDao.remove(user,commentId,(err,coment)=>{
+         if(err)return res.status(401).json({'Error':err.message});
+         else return res.status(200).json({"Message":"comment deleted successfully"});
+    })
 })
 
 module.exports = router;

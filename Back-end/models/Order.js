@@ -1,16 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-    const Comment = sequelize.define('comments', {
+    const Order = sequelize.define('orders', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        content: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        deadline: {
+            type:DataTypes.STRING,
         },
-        rating: {
-            type: DataTypes.INTEGER,
+        userId:{
+            type:DataTypes.INTEGER,
+            references: {
+                model: 'users',
+                key: 'id'
+            }
         },
         serviceId:{
             type:DataTypes.INTEGER,
@@ -19,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
-        userId:{
+        freelancerId:{
             type:DataTypes.INTEGER,
             references: {
                 model: 'users',
@@ -28,6 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         }
 
     },{timestamps:false});
-
-    return Comment;
+    
+    return Order;
 }
