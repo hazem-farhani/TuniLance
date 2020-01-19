@@ -3,22 +3,7 @@
   <h3>Results for "{{keyword}}"</h3>
   <br><br>
   <div class="row">
-    <div class="col-xs-3" style="margin:10px">
-      <app-service-card [service]="service"></app-service-card>
-    </div>
-    <div class="col-xs-3" style="margin:10px">
-      <app-service-card [service]="service"></app-service-card>
-    </div>
-    <div class="col-xs-3" style="margin:10px">
-      <app-service-card [service]="service"></app-service-card>
-    </div>
-    <div class="col-xs-3" style="margin:10px">
-      <app-service-card [service]="service"></app-service-card>
-    </div>
-    <div class="col-xs-3" style="margin:10px">
-      <app-service-card [service]="service"></app-service-card>
-    </div>
-    <div class="col-xs-3" style="margin:10px">
+    <div class="col-xs-3" style="margin:10px" *ngFor="let service of services">
       <app-service-card [service]="service"></app-service-card>
     </div>
   </div>

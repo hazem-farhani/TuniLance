@@ -3,7 +3,7 @@
   <div class="card-img-top">
     <ngb-carousel [interval]="false">
       <ng-template ngbSlide>
-      <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide" style="height:200px;">
+      <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide" style="height:200px;border-radius:0px;">
       <div class="carousel-caption">
         <p></p>
       </div>
@@ -21,7 +21,7 @@
     <p class="card-text">{{service.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Rating: {{service.rating}} (use stars later)</li>
+    <li class="list-group-item"><i class="fa fa-star" style="color:#FFDF00;" aria-hidden="true" *ngFor="let i of ' '.repeat(service.rating).split('')"></i></li>
     <li class="list-group-item">{{service.price}}$</li>
   </ul>
 </div>

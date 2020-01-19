@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule, MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { ProfileCardComponent } from './components/profile/profile-card/profile-card.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {MatIconModule} from '@angular/material/icon';
     ServiceAddComponent,
     CommentListComponent,
     CommentComponent,
+    ProfileCardComponent,
   ],
   imports: [
     CommonModule,

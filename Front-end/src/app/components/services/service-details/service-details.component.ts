@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service.model';
 import { ServicesService } from '../../../services/services.service';
 import { ActivatedRoute } from '@angular/router'
+import { ProfileCardComponent } from '../../profile/profile-card/profile-card.component';
 
 @Component({
   selector: 'app-service-details',

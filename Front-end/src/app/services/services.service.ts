@@ -21,6 +21,16 @@ export class ServicesService {
     );
   }
 
+  public getServicesByTitle(title: String): Observable<Service[]>{
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.get<Service[]>(API_URL+"/title/"+title).pipe(
+      map(data => {
+        console.log(data[0])
+        return data.map(service => new Service(service.id, service.title, service.description, service.price, service.rating))
+      }
+      ));
+  }
+
   public getTopServices(): Observable<Service[]>{
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.get<Service[]>(API_URL+"/top3").pipe(

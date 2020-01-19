@@ -1,0 +1,53 @@
+.wrap{
+  border: transparent solid 1px;
+  margin: 0;
+  background-image: url("../../../assets/black-felt.png");
+}
+.content{
+  //background-color: white;
+  margin: 10rem 6rem 6rem 6rem;
+}
+
+.profile-info {
+  border: transparent solid 1px;
+  border-radius: 1rem;
+  background-color: white;
+  .content-center {
+    text-align: center;
+  }
+  img {
+    margin: 1.8rem;
+    border-radius: 50%;
+    width: 55%;
+    height: 55%;
+  }
+  button {
+    margin-top: .6rem;
+  }
+  hr {
+    border: 1px solid black;
+  }
+  .div-line {
+    padding: .5rem;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-weight: bold;
+      .p-right{
+        text-align: right;
+      }
+      .p-left{
+        text-align: left;
+      }
+    }
+    i {
+      padding-right: .3rem;
+    }
+    //border: solid black 1px;
+  }
+
+}
+
+.related-services {
+  //border: black solid 1px;
+}
