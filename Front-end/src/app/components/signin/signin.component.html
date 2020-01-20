@@ -11,7 +11,10 @@
                                   <i class="fa fa-facebook-square"></i>
                               </a>
                           </div>
-                          <form class="register-form">
+                          <form class="register-form"  class="form"  [formGroup]="signinForm" (ngSubmit)="login()">
+                             <div  *ngIf="!authenticated"  class="cross-validation-error-message alert alert-danger">
+                               wrong email or password
+                             </div>
                               <label>Email</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
@@ -19,9 +22,8 @@
                                       <i class="nc-icon nc-email-85"></i>
                                   </span>
                                 </div>
-
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
-                              </div>
+                                  <input type="text" formControlName="email" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                </div>
 
                               <label>Password</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
@@ -30,9 +32,10 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
-                              </div>
-                              <button class="btn btn-danger btn-block btn-round">Login</button>
+                                  <input type="text" formControlName="password" class="form-control" placeholder="Password" 
+                                   (focus)="focus1=true" (blur)="focus1=false" >
+                                 </div>
+                              <button type="submit" [disabled]="!signinForm.valid" class="btn btn-danger btn-block btn-round" >Login</button>
                           </form>
                           <div class="forgot">
                               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>

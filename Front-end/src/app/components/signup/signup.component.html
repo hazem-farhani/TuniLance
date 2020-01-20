@@ -13,9 +13,10 @@
                           </div>-->
 							<mat-horizontal-stepper [linear] = "true" #stepper
 								style="background-color:#FF8F5E">			
-						   <mat-step [stepControl] = "firstFormGroup" >
+						   <mat-step [stepControl] = "accountDetailFormGroup" >
 						   <ng-template matStepLabel>Account Details</ng-template>
-							<form class="register-form" [formGroup] = "firstFormGroup">
+                            <form class="register-form" 
+                                         [formGroup] = "accountDetailFormGroup">
                               <label>Email</label>
                               <div class="input-group form-group-no-border">
                                 <div class="input-group-prepend">
@@ -46,7 +47,8 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="password" class="form-control" placeholder="Password" formControlName = "password">
+                                  <input type="password" class="form-control" placeholder="Password" formControlName = "password" 
+                                         [ngClass]="{'form-control-danger':accountDetailFormGroup.password.touched && !accountDetailFormGroup.password.valid}">
                               </div>
 
                               <label>Confirm Password</label>
@@ -56,18 +58,18 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="password" class="form-control form-control-danger" [ngClass]="{'form-control-danger': firstFormGroup.errors?.passwordsMatch!=null}" placeholder="Confirm Password" formControlName = "passConfirm">
+                                  <input type="password" class="form-control form-control-danger" [ngClass]="{'form-control-danger': accountDetailFormGroup.errors?.passwordsMatch!=null}" placeholder="Confirm Password" formControlName = "passConfirm">
                               </div>
                               <br/>
-							  <div  *ngIf="firstFormGroup.errors?.passwordsMatch!=null && (firstFormGroup.touched || firstFormGroup.dirty)"  class="cross-validation-error-message alert alert-danger">
+							  <div  *ngIf="accountDetailFormGroup.errors?.passwordsMatch!=null && (accountDetailFormGroup.touched || accountDetailFormGroup.dirty)"  class="cross-validation-error-message alert alert-danger">
 									Passwords must match.
-								</div>
-                              <button class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
+							 </div>
+                              <button [disabled]="!accountDetailFormGroup.valid" class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
                           </form>
 				   </mat-step>
-  <mat-step [stepControl]="firstFormGroup">
+                  <mat-step [stepControl]="personalDetailFormGroup">
   						   <ng-template matStepLabel>Personal Details</ng-template>
-							<form class="register-form" [formGroup] = "firstFormGroup">
+							<form class="register-form" [formGroup] = "personalDetailFormGroup" (ngSubmit)="register()">
                               <label>First Name</label>
                               <div class="input-group form-group-no-border">
                                 <div class="input-group-prepend">
@@ -76,7 +78,7 @@
                                   </span>
                                 </div>
 
-                                  <input type="email" class="form-control" placeholder="Email" formControlName = "firstname" required >
+                                  <input type="email" class="form-control" placeholder="firstName" formControlName = "firstName" required >
 								  
                               </div>
                               <label>Last Name</label>
@@ -87,7 +89,7 @@
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="Username" formControlName = "lastname" required>
+                                  <input type="text" class="form-control" placeholder="lastName" formControlName = "lastName" required>
 								  
                               </div>
 
@@ -98,7 +100,7 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="text" class="form-control" placeholder="Password" formControlName = "country">
+                                  <input type="text" class="form-control" placeholder="country" formControlName = "country">
                               </div>
 
                               <label>Date of birth</label>
@@ -108,7 +110,7 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="date" class="form-control" placeholder="Confirm Password" formControlName = "date">
+                                  <input type="date" class="form-control" placeholder="dateOfBirth" formControlName = "dateOfBirth">
                               </div>
 							  
 							  <label>Phone number</label>
@@ -118,13 +120,14 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="text" class="form-control" placeholder="Confirm Password" formControlName = "phone">
+                                  <input type="text" class="form-control" placeholder="phone" formControlName = "phoneNumber">
                               </div>
+                              <mat-checkbox formControlName = "freelancer" value="checked" >Register as freelancer!</mat-checkbox>
                               <br/>
-                              <button class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
+                              <button type="submit" class="btn btn-danger btn-block btn-round" matStepperNext>register</button>
                           </form>
-  </mat-step>
-					  <mat-step [stepControl] = "secondFormGroup">
+                     </mat-step>
+					 <!--<mat-step [stepControl] = "secondFormGroup">
 					  <form [formGroup] = "secondFormGroup">
 						 <ng-template matStepLabel>Payement Details</ng-template>
 						 <mat-form-field>
@@ -144,7 +147,7 @@
 						 <button mat-button matStepperPrevious>Back</button>
 						 <button mat-button (click) = "stepper.reset()">Reset</button>
 					  </div>
-				   </mat-step>
+				   </mat-step>-->
 				</mat-horizontal-stepper>
 						  
 

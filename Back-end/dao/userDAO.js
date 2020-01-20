@@ -36,7 +36,7 @@ userDAO.prototype.list=function(callback){
 
 
 userDAO.prototype.getUser=function(id,callback){
-    this.Users.findAll({
+    this.Users.findOne({
         where: {
             id:id
         },

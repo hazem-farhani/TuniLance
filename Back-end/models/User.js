@@ -34,7 +34,10 @@ const User = sequelize.define('users', {
     },
     photo: {
         type: DataTypes.STRING
-    }
+    },
+    freelancer: {
+        type: DataTypes.BOOLEAN
+    },
     
 },{timestamps:false});
 

@@ -13,14 +13,14 @@ module.exports = function (passport) {
     passport.use('login',
        new LocalStrategy(
         {
-          usernameField: "username",
+          usernameField: "email",
           passwordField:"password"
         },
-        function(username, password, done) {
+        function(email, password, done) {
           // When a user tries to sign in this code runs
           Users.findOne({
             where: {
-              username: username
+              email: email
             }
           }).then(function(dbUser) {
             // If there's no user with the given email

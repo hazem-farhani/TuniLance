@@ -13,7 +13,7 @@ jwtConfig=require('../config/jwt');
 
 
 //get list of all users
-router.get('/list', (req, res) =>{
+router.get('/list',auth,(req, res) =>{
     //nasna3 userDao w naadilou el db object
     var userDao=new userDAO(db);
     //ne5tar elfonction elli nheb aliha mel userDao 
@@ -27,9 +27,25 @@ router.get('/list', (req, res) =>{
     }) 
 });
 
+ //get current user
+ router.get('/me',auth,(req,res)=>{
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    console.log(req.user);
+    var userDao=new userDAO(db);
+    var id=req.user.id;
+    userDao.getUser(id,(err,user)=>{
+        if(err)return res.status(404).json({
+             "Error":err.message
+        })
+        else{
+            return res.status(200).json(user);
+        }
+    })
+ });
+
 
  //get user with id
-router.get('/:id',(req,res)=>{
+router.get('/:id',auth,(req,res)=>{
     var id=req.params.id;
     var userDao=new userDAO(db);
     userDao.getUser(id,(err,user)=>{
@@ -59,7 +75,7 @@ router.get('/:id',(req,res)=>{
 		res.status(400).json({
 			"Error": "Missing Input Data"
 		});
-	 var newUser = req.body;
+     var newUser = req.body;
      var userDao=new userDAO(db);
      userDao.create(newUser,(err,createdUser)=>{
           if(err)return res.status(500).json({
@@ -114,7 +130,7 @@ router.get('/:id',(req,res)=>{
 
 
 //update user
- router.put('/update/:id',(req,res)=>{
+ router.put('/update/:id',auth,(req,res)=>{
      var id=req.params.id;
      user=req.body;
      if(user.id!=id)return res.status(400).json({
@@ -133,7 +149,7 @@ router.get('/:id',(req,res)=>{
      })
  });
 
- router.delete('/delete/:id',(req,res)=>{
+ router.delete('/delete/:id',auth,(req,res)=>{
     var id=req.params.id;
     var userDao=new userDAO(db);
     userDao.remove(id,(err,user)=>{

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ComponentsModule } from './_components/components.module';
 import {HomeComponent} from './components/home/home.component';
@@ -26,6 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule, MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { httpInterceptorProviders } from './http-interceptors';
+import { TokenInterceptor } from './http-interceptors/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -58,9 +61,17 @@ import {MatIconModule} from '@angular/material/icon';
     MatStepperModule,
 	MatFormFieldModule,
 	MatInputModule,
-	MatIconModule,
+  MatIconModule,
+  MatCheckboxModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
