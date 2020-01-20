@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../models/service.model';
 import { ActivatedRoute } from '@angular/router'
+import { ServicesService} from '../../services/services.service';
 
 @Component({
   selector: 'app-search',
@@ -8,14 +9,20 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  private service = new Service(5,"aez","aea",5,5);
   private page = 1;
   private keyword = "";
+  private services = []
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(
+    private route:ActivatedRoute,
+    private servicesService: ServicesService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => this.keyword = params["keyword"])
+    this.servicesService.getServicesByTitle(this.keyword).subscribe(
+      services => this.services = services
+    )
   }
 
 }

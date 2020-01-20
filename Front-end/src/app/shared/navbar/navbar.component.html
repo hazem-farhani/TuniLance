@@ -11,9 +11,7 @@
 					<div ngbDropdown class="d-inline-block dropdown">
 						<a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Categories</a>
 						<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger">
-							<a class="dropdown-item">Categ</a>
-							<a class="dropdown-item">Categ</a>
-							<a class="dropdown-item">Categ</a>
+							<a class="dropdown-item" *ngFor="let category of categories">{{category.name}}</a>
 						</div>
 					</div>
                 </li>

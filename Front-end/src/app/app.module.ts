@@ -29,6 +29,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { httpInterceptorProviders } from './http-interceptors';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
+import { ProfileCardComponent } from './components/profile/profile-card/profile-card.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TokenInterceptor } from './http-interceptors/token-interceptor';
     ServiceAddComponent,
     CommentListComponent,
     CommentComponent,
+    ProfileCardComponent,
   ],
   imports: [
     CommonModule,

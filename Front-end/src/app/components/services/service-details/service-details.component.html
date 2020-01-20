@@ -1,9 +1,13 @@
 <br>
 <div class="container" style="margin-top:10%">
   <div class="row" *ngIf="service">
+
+    <!-- Details -->
+
     <div class="col-md-8 main">
       <h2>{{service.title}}</h2>
-      <h5>5 stars</h5><br>
+      <h6><i class="fa fa-star" style="color:#FFDF00;" aria-hidden="true" *ngFor="let i of ' '.repeat(service.rating).split('')"></i></h6><br>
+
       <div class="carousel">
         <ngb-carousel [interval]="false">
           <ng-template ngbSlide>
@@ -27,12 +31,18 @@
 	  <app-comment-list></app-comment-list>
     </div>
     <div class="col-md-4">
+
+      <!-- Order -->
       <div class="side_order">
         <h5 >{{service.price}} TND</h5>
         <p >2-4 days</p><br>
         <button class="btn btn-danger button_order">Order</button><br><br>
       </div>
+
+      <app-profile-card></app-profile-card>
     </div>
+
+
   </div>
 
 

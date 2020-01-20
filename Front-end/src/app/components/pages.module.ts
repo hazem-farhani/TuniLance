@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import {RouterModule} from '@angular/router';
 import { SigninComponent } from './signin/signin.component';
+import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { SigninComponent } from './signin/signin.component';
         HomeComponent,
         SignupComponent,
         ProfileComponent,
-        SigninComponent
+        SigninComponent,
+        ProfileCardComponent
     ]
 })
 export class PagesModule { }
