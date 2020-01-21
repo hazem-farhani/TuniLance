@@ -10,11 +10,11 @@ import {User} from '../models/user.model';
 })
 
 export class AuthService {
-  
+
 
 
   constructor(private http: HttpClient){}
-  
+
    API_URL = "http://localhost:5000/users";
 
 
@@ -28,6 +28,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
+    console.log(user);
     return this.http.post<any>(`${this.API_URL}/register`, user);
   }
 
@@ -50,8 +51,9 @@ export class AuthService {
      localStorage.setItem('token', token);
   }
 
-  getCurrentUser(): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/me`);
+  getCurrentUser(): any {
+    //return this.http.get<any>(`${this.API_URL}/me`);
+    return JSON.parse(localStorage.getItem("currentUser"));
   }
 
   setCurrentUser(user) {// save it in localstorage
@@ -64,6 +66,6 @@ export class AuthService {
     }
   }
 
-  
+
 
 }

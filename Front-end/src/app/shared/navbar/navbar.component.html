@@ -45,10 +45,16 @@
                         <p class="d-lg-none">GitHub</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="(this.authService.loggedIn())">
+                    <a routerLink="/user-profile" class="nav-link">{{this.getUser().username}}</a>
+                </li>
+                <li class="nav-item" *ngIf="(this.authService.loggedIn())">
+                  <a routerLink="/logout" class="nav-link" style="margin-top:12px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item" *ngIf="!(this.authService.loggedIn())">
                     <a routerLink="/signin" class="nav-link">Sign in</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!(this.authService.loggedIn())">
                     <a routerLink="/signup" class="btn btn-danger btn-round">Sign up</a>
                 </li>
 

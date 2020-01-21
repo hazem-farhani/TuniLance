@@ -10,6 +10,8 @@ const API_URL = "http://localhost:5000/categories"
   providedIn:'root'
 })
 export class CategoryService {
+  private categories = null;
+
   constructor(private httpClient: HttpClient){}
 
   /*public getCategory(id:number): Observable<Category>{
@@ -19,11 +21,17 @@ export class CategoryService {
     );
   }*/
 
-  public getCategories(): Observable<Category[]>{
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.get<Category[]>(API_URL+"/list").pipe(
-      map(data => data.map(category => new Category(category.id, category.name)))
-    );
+  public getCategories(): Observable<Category[]> {
+    if (!this.categories) {
+      const headers = new HttpHeaders({'Content-Type': 'application/json'});
+      return this.httpClient.get<Category[]>(API_URL+"/list").pipe(
+        map(data => {
+          const categories = data.map(category => new Category(category.id, category.name));
+          this.categories = categories;
+          return categories;
+        }));
+    }
+    return new Observable<Category[]>(observer => observer.next(this.categories));
   }
 
 /*  public getTopCategory(): Observable<Category[]>{

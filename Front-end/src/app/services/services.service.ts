@@ -21,6 +21,15 @@ export class ServicesService {
     );
   }
 
+  public getServicePhoto(id:number): any{
+    //const s = new Service("English male voice over","eazdsq qqqqqqq qqqqazdq sdcazedazeazeazeazrqsdqsdazedaz",5);
+    //return new Observable<Service>( (o) => o.next(s))
+    //const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.httpClient.get(API_URL+"/photo/"+id)/*.pipe(
+      map(data => new Service(data.id, data.title, data.description, data.price, data.rating))
+    );*/
+  }
+
   public getServicesByTitle(title: String): Observable<Service[]>{
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.get<Service[]>(API_URL+"/title/"+title).pipe(

@@ -1,7 +1,22 @@
 const router = require('express').Router();
+const path = require('path');
 const {validationRules, validate} = require('../middlewares/serviceValidator');
 const serviceDAO = require('../dao/serviceDAO');
 const database = require('../config/database');
+const multer  = require('multer');
+
+//Configure Multer
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads/service')
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now() + '.jpg')
+  }
+});
+
+var upload = multer({ storage: storage }).single('file');
+
 
 //CENTRALIZE SERVICEDAO INSTANCE
 //IMPLEMENT LOGGER
@@ -22,12 +37,37 @@ router.get('/top3', (req, res) => {
       }
     )
 })
+
+//Get service photo by id
+router.get('/photo/:serviceId', (req, res) => {
+    const serviceDao = new serviceDAO(database);
+    res.header("Access-Control-Allow-Origin", "*");
+    serviceDao.getService(req.params.serviceId,
+      service => {
+        //res.download()
+
+        res.sendFile(path.join(__dirname,"..\\"+service.photo));
+      },
+      err => {
+        console.log(err.message)
+        res.status(404).json({error: err.message})
+      }
+    )
+    //Service.findByPk(req.params.serviceId)
+    //.then(service => res.json(service));
+})
+
 //Get one service by id
 router.get('/:serviceId', (req, res) => {
     const serviceDao = new serviceDAO(database);
     res.header("Access-Control-Allow-Origin", "*");
     serviceDao.getService(req.params.serviceId,
-      service => res.json(service),
+      service => {
+        //res.download()
+
+        //res.sendFile(path.join(__dirname,"..\\"+service.photo));
+        res.json(service)
+      },
       err => {
         console.log(err.message)
         res.status(404).json({error: err.message})
@@ -52,9 +92,9 @@ router.get('/title/:serviceTitle', (req, res) => {
 })
 
 //Create service
-router.post('/',validationRules('createService'), validate, (req, res) => {
+router.post('/', upload, validationRules('createService'), validate, (req, res) => {
     const serviceDao = new serviceDAO(database);
-    serviceDao.createService(req.body,
+    serviceDao.createService(req.file, req.body,
       service => res.json(service),
       err => res.status(400).json({error : err.message})
     )
