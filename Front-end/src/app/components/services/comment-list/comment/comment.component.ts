@@ -14,7 +14,7 @@ export class CommentComponent implements OnInit {
 	) { }
 
   ngOnInit() {
-	this.authService.getUser(this.comment.userId).subscribe(user => console.log(user));
+	this.authService.getUser(this.comment.userId).subscribe(user => this.user = user);
   }
 
 }

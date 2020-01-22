@@ -7,6 +7,8 @@ var commentDAO=module.exports=function(db){
 
 
 commentDAO.prototype.create=function(user,comment,callback){
+	console.log(user);
+	console.log(user);
     if(user.id!=comment.userId)return callback(Error("you have no right to create comment for another user"));
     this.Comments.create(comment)
        .then(newComment=>{

@@ -24,7 +24,7 @@ require('./config/passport')(passport);
 // Routes
 app.use('/', require('./routes/users'));
 app.use('/services', require('./routes/services'));
-app.use('/comments', require('./routes/comments'));
+app.use('/comments', auth, require('./routes/comments'));
 app.use('/skills',auth,require('./routes/skills'));
 app.use('/users',require('./routes/users'));
 app.use('/categories',require('./routes/categories'));
