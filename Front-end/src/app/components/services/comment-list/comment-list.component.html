@@ -1,12 +1,9 @@
 <ul class="list-group" *ngIf="this.comments.length>0">
-  <li class="list-group-item" *ngFor="let comment of comments">
-  <h6>Wassim</h6> 
-  <i class="fa fa-star" style="color:#FFDF00;" aria-hidden="true" *ngFor="let i of ' '.repeat(comment.rating).split('')"></i><br><br>
-  <p>{{comment.content}}</p></li>
+	<app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
   <!--<li class="list-group-item"><h6>Mahmoud</h6> <span class="badge">5</span><br><br><p>qdsqqqqq qqqqqqqqq qqqqqqqqq lmkzap ekzlqds;</p></li>
   <li class="list-group-item"><h6>Warnings</h6> <span class="badge">3</span><br><br><p>qdsqqqqq qqqqqqqqq qqqqqqqqq lmkzap ekzlqds;</p></li>-->
 	<li class="list-group-item">
-		<h6>Username</h6>
+		<h6>Me</h6>
 		<textarea name="name" placeholder="Write a comment..." class="form-control" rows="2" cols="50" [(ngModel)]="newComment" (keyup.enter)="addComment()"></textarea>
 		<br>
 		<button class="btn btn-danger btn-sm button_order">Comment</button>
