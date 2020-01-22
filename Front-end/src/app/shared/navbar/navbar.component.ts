@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
         this.categoryService.getCategories().subscribe(categories => this.categories = categories);
+		this.getUser();
     }
 
     search(){
@@ -43,7 +44,7 @@ export class NavbarComponent implements OnInit {
     }
 
     getUser(){
-      this.authService.getCurrentUser().subscribe(user => this.user = user)
+      this.authService.getCurrentUser().subscribe(user => {this.user = user; console.log(user);});
     }
 
     removeHeader_Footer() {
