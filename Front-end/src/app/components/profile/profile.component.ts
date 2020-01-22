@@ -39,5 +39,8 @@ export class ProfileComponent implements OnInit {
     edit(id:number){
         this.router.navigate(['/user-profile-edit',id]);
     }
+    createService(){
+        this.router.navigate(['service/add']);
+    }
     
 }

@@ -37,6 +37,10 @@
                 </div>
                 <div *ngFor="let skill of visitedUser?.skills"> {{skill.name}} </div>
                 <hr>
+                <div class="content-center">
+                    <button class="btn btn-success" *ngIf="isTheSameUser" (click)="createService()">Create New Service</button>
+                    <hr *ngIf="isTheSameUser">
+                </div>
             </div>
 
             <!--   Services     -->
