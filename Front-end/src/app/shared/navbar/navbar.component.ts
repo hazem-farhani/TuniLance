@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
     }
 
     getUser(){
-      this.authService.getCurrentUser().subscribe(user => this.user = user)
+      this.authService.getCurrentUser().subscribe(user => {this.user = user; console.log(user}));
     }
 
     removeHeader_Footer() {
