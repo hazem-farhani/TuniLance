@@ -15,5 +15,6 @@ export class User {
     public photo:string;
     public services:Array<Service>;
     public skills:Array<Skill>;
+    public description:string;
   }
   

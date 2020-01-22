@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
               .subscribe(user => {
                 console.log(user);
                 this.authService.setCurrentUser(user);
-                this.router.navigate(['/user-profile']);
+                this.router.navigate(['/user-profile',user.id]);
               });
           },
           err => {

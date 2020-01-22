@@ -31,6 +31,14 @@ export class AuthService {
     return this.http.post<any>(`${this.API_URL}/register`, user);
   }
 
+  getUser(id:number):Observable<User>{
+    return this.http.get<User>(`${this.API_URL}/${id}`);
+  }
+
+  updateUser(id:number,newUser:any):Observable<any>{
+    return this.http.put<any>(`${this.API_URL}/update/${id}`,newUser);
+  }
+
 
 
   logout() {

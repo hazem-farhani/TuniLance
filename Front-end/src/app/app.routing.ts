@@ -12,11 +12,13 @@ import {SigninComponent} from './components/signin/signin.component';
 import {ServiceDetailsComponent} from './components/services/service-details/service-details.component';
 import {SearchComponent} from './components/search/search.component';
 import { ServiceAddComponent } from './components/services/service-add/service-add.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home2', component: ComponentsComponent },
-    { path: 'user-profile', component: ProfileComponent },
+    { path: 'user-profile/:userId', component: ProfileComponent },
+    { path: 'user-profile-edit/:userId', component: ProfileEditComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'home', component: HomeComponent },

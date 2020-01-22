@@ -33,11 +33,16 @@ const User = sequelize.define('users', {
         type: DataTypes.STRING
     },
     photo: {
-        type: DataTypes.STRING
-    },
+        type: DataTypes.TEXT("long"),
+        allowNull: true,
+        length:"long",
+       },
     freelancer: {
         type: DataTypes.BOOLEAN
     },
+    description: {
+        type: DataTypes.STRING
+    }
     
 },{timestamps:false});
 

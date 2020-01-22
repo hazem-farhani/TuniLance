@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
     ngOnInit() {
 		this.accountDetailFormGroup = this._formBuilder.group({
 			username: ['', Validators.required],
-			password: ['', Validators.required],
+			password: ['', [Validators.required, Validators.minLength(6)]],
 			passConfirm: ['', Validators.required],
 			email: ['', Validators.required],
 		}, {validator: passwordValidator});
@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
 			country: [''],
 			phoneNumber: [''],
 			dateOfBirth:[''],
-            freelancer:[false]
+       freelancer:[false]
 		});
 	}
 
@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
               .subscribe(user => {
                 console.log(user);
                 this.authService.setCurrentUser(user);
-                this.router.navigate(['/user-profile']);
+                this.router.navigate(['/user-profile',user.id]);
               });
           },
           err => {
