@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./service-add.component.scss']
 })
 export class ServiceAddComponent implements OnInit {
-  private service = new Service(5,'zeaz','xdazeza',5,5);
+ // private service = new Service(5,'zeaz','xdazeza',5,5);
   serviceForm : FormGroup;
   private categories = null;
   private submitted = false;
