@@ -23,10 +23,10 @@ sequelize.authenticate()
     .catch(err => console.log(err));
 
 //Create Db and tables  OR  Sync db with model
-sequelize.sync({ force: false, alter: true})
+/*sequelize.sync({ force: false, alter: true})
     .then(() => {
         console.log('Database and Tables Synched');
-});
+});*/
 
 var db={}
 //creating models and putting them in db object
