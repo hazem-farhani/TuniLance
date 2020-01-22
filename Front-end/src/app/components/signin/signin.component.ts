@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
             console.log('logged in');
             console.log(res.token);
             this.authService.setToken(res.token);
-            this.authService.getCurrentUser()
+            const user = this.authService.getCurrentUser()
               .subscribe(user => {
                 console.log(user);
                 this.authService.setCurrentUser(user);

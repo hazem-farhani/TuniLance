@@ -20,11 +20,15 @@ export class ServiceDetailsComponent implements OnInit {
   ngOnInit() {
     this.observable = this.servicesService.getService(this.activatedRoute.snapshot.params['id'])
     .subscribe(service => {this.service = service; console.log(service)});
+    this.servicesService.getServicePhoto(this.activatedRoute.snapshot.params['id']).subscribe(xd => console.log(xd))
     this.activatedRoute.params.subscribe(params => {
-      params => this.servicesService.getService(params['id'])
-      .subscribe(
-        service => {this.service = service; console.log(service)},
-        err => {this.errorMessage="This service is NonExistant!" ;console.log(this.errorMessage);})
+      params => {
+        this.servicesService.getService(params['id'])
+        .subscribe(
+          service => {this.service = service; console.log(service)},
+          err => {this.errorMessage="This service is NonExistant!" ;console.log(err);})
+        this.servicesService.getServicePhoto(params['id']).subscribe(xd => console.log(xd))
+      }
     })
   }
   //WHAT IF THE SERVICE CHANGED? UPDATE?

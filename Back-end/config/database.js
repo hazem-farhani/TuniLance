@@ -29,7 +29,7 @@ sequelize.sync({ force: false, alter: true})
 });
 
 var db={}
-//creating models and putting them in db object 
+//creating models and putting them in db object
 const Services = ServiceModel(sequelize, Sequelize.DataTypes);
 const Categories = CategoryModel(sequelize, Sequelize.DataTypes);
 const Comments = CommentModel(sequelize, Sequelize.DataTypes);
@@ -52,6 +52,3 @@ Object.keys(db).forEach(modelName => {
 db.Sequelize=Sequelize;
 db.sequelize=sequelize;
 module.exports=db;
-
-
-

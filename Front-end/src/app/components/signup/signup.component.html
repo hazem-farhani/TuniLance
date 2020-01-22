@@ -12,10 +12,10 @@
                               </a>
                           </div>-->
 							<mat-horizontal-stepper [linear] = "true" #stepper
-								style="background-color:#FF8F5E">			
+								style="background-color:#FF8F5E">
 						   <mat-step [stepControl] = "accountDetailFormGroup" >
 						   <ng-template matStepLabel>Account Details</ng-template>
-                            <form class="register-form" 
+                            <form class="register-form"
                                          [formGroup] = "accountDetailFormGroup">
                               <label>Email</label>
                               <div class="input-group form-group-no-border">
@@ -26,7 +26,7 @@
                                 </div>
 
                                   <input type="email" class="form-control" placeholder="Email" formControlName = "email" required >
-								  
+
                               </div>
                               <label>Username</label>
                               <div class="input-group form-group-no-border">
@@ -37,7 +37,7 @@
                                 </div>
 
                                   <input type="text" class="form-control" placeholder="Username" formControlName = "username" required>
-								  
+
                               </div>
 
                               <label>Password</label>
@@ -47,7 +47,8 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                   </div>
-                                  <input type="password" class="form-control" placeholder="Password" formControlName = "password" >
+                                  <input type="password" class="form-control" placeholder="Password" formControlName = "password"
+                                         [ngClass]="{'form-control-danger':accountDetailFormGroup.password && accountDetailFormGroup.password.touched && !accountDetailFormGroup.password.valid}">
                               </div>
 
                               <label>Confirm Password</label>
@@ -60,7 +61,7 @@
                                   <input type="password" class="form-control form-control-danger" [ngClass]="{'form-control-danger': accountDetailFormGroup.errors?.passwordsMatch!=null}" placeholder="Confirm Password" formControlName = "passConfirm">
                               </div>
                               <br/>
-							  <div  *ngIf="accountDetailFormGroup.errors?.passwordsMatch!=null && (accountDetailFormGroup.touched || accountDetailFormGroup.dirty)"  class="cross-validation-error-message alert alert-danger">
+							  <div  *ngIf="accountDetailFormGroup.errors?.passwordsMatch!=null && accountDetailFormGroup && (accountDetailFormGroup.touched || accountDetailFormGroup.dirty)"  class="cross-validation-error-message alert alert-danger">
 									Passwords must match.
 							 </div>
                               <button [disabled]="!accountDetailFormGroup.valid" class="btn btn-danger btn-block btn-round" matStepperNext>Next</button>
@@ -78,7 +79,7 @@
                                 </div>
 
                                   <input type="email" class="form-control" placeholder="firstName" formControlName = "firstName" required >
-								  
+
                               </div>
                               <label>Last Name</label>
                               <div class="input-group form-group-no-border">
@@ -89,7 +90,7 @@
                                 </div>
 
                                   <input type="text" class="form-control" placeholder="lastName" formControlName = "lastName" required>
-								  
+
                               </div>
 
                               <label>Country</label>
@@ -111,7 +112,7 @@
                                   </div>
                                   <input type="date" class="form-control" placeholder="dateOfBirth" formControlName = "dateOfBirth">
                               </div>
-							  
+
 							  <label>Phone number</label>
                               <div class="input-group form-group-no-border">
                                   <div class="input-group-prepend">
@@ -148,9 +149,9 @@
 					  </div>
 				   </mat-step>-->
 				</mat-horizontal-stepper>
-						  
 
-						  
+
+
                       </div>
                     </div>
                 </div>

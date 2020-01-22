@@ -16,7 +16,7 @@ jwtConfig=require('../config/jwt');
 router.get('/list',auth,(req, res) =>{
     //nasna3 userDao w naadilou el db object
     var userDao=new userDAO(db);
-    //ne5tar elfonction elli nheb aliha mel userDao 
+    //ne5tar elfonction elli nheb aliha mel userDao
     userDao.list((err,users)=>{
         if(err)return res.status(404).json({
             "Error":err.message
@@ -24,7 +24,7 @@ router.get('/list',auth,(req, res) =>{
         else{
             return res.status(200).json(users);
         }
-    }) 
+    })
 });
 
  //get current user
@@ -59,7 +59,7 @@ router.get('/:id',auth,(req,res)=>{
  });
 
 
- //register 
+ //register
  router.post('/register',(req,res)=>{
     //check if there is a non needed property
 	var propertiesNames = Object.getOwnPropertyNames(req.body);
@@ -78,9 +78,12 @@ router.get('/:id',auth,(req,res)=>{
      var newUser = req.body;
      var userDao=new userDAO(db);
      userDao.create(newUser,(err,createdUser)=>{
-          if(err)return res.status(500).json({
+          if(err) {
+              console.log(err)
+              return res.status(500).json({
               "Error":err.message
           })
+        }
           else{
             const token=jwt.sign({
                 id:createdUser.id,
@@ -122,7 +125,7 @@ router.get('/:id',auth,(req,res)=>{
                      })
                  }
              })
-             
+
          }
      })(req,res,next)
  });

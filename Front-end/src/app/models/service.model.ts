@@ -4,6 +4,7 @@ export class Service {
     public title: String,
     public description: String,
     public price: number,
-    public rating: number
+    public rating: number,
+	public comments: any
   ){}
 }

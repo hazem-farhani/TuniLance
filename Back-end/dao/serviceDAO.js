@@ -42,8 +42,9 @@ serviceDAO.prototype.getTopServices = function(limit, next, error) {
   .catch(err => error(err))
 }
 
-serviceDAO.prototype.createService = function(service, next, error) {
-  this.Services.create(service)
+serviceDAO.prototype.createService = function(photo, service, next, error) {
+  console.log(photo);
+  this.Services.create({...service, photo:photo.path})
   .then(service => next(service))
   .catch(err => error(err))
 }

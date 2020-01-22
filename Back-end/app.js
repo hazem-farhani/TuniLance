@@ -12,8 +12,12 @@ app = express();
 app.use(cors());
 
 // Body Parser
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+bodyParser = {
+  json: {limit: '50mb', extended: true},
+  urlencoded: {limit: '50mb', extended: true}
+};
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({limit: '50mb', extended: true}));
 
 app.use(passport.initialize());
 require('./config/passport')(passport);

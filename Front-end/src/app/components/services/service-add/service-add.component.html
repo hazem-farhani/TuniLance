@@ -3,29 +3,47 @@
   <form [formGroup] = "serviceForm" (ngSubmit)="onSubmit()" method="POST">
   <div class="row">
     <div class="col-md-8">
-      <h5>Title<b style="color:red;">*</b>:</h5>
-      <input
-        type="text"
-        class="form-control"
-        required
-        name="title"
-        formControlName="title"><br>
-      <h5>Description*:</h5>
-      <textarea
-        class="form-control"
-        rows=5
-        id="description"
-        name="description"
-        formControlName="description"
-        required></textarea><br>
-      <br><h6>TODO : Category</h6><br>
+      <h5>Title<span style="color:red;">*</span>:</h5>
+      <div
+        [ngClass]= "{'has-danger':(!(serviceForm.get('title').valid) && ((serviceForm.get('title').dirty) || (serviceForm.get('title').touched))) }"
+        class="form-group">
+          <input
+            formControlName="title"
+            type="text"
+            name="title"
+            class="form-control"
+            required>
+          <div class="form-control-feedback" *ngIf="!(serviceForm.get('title').valid) && ((serviceForm.get('title').dirty) || (serviceForm.get('title').touched))">Sorry, the title is required.</div>
+      </div><br>
+      <h5>Description<span style="color:red;">*</span>:</h5>
+      <div
+        [ngClass]= "{'has-danger':(!(serviceForm.get('description').valid) && ((serviceForm.get('description').dirty) || (serviceForm.get('description').touched))) }"
+        class="form-group">
+          <textarea
+            class="form-control"
+            rows=5
+            id="description"
+            name="description"
+            formControlName="description"
+            required></textarea>
+            <div class="form-control-feedback" *ngIf="!(serviceForm.get('description').valid) && ((serviceForm.get('description').dirty) || (serviceForm.get('description').touched))">Sorry, the description is required.</div>
+      </div><br>
+
+      <div class="form-group">
+        <label for="cats"><h5>Category:</h5></label>
+        <select class="form-control" id="cats" (change)="changeCategory($event)" formControlName="categoryId">
+          <option value="" disabled>Choose a category</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+
       <h5>Select Photo:</h5>
       <input
         type="file"
        name="file"
        (change)="handleFileInput($event.target.files)"
        required><br><br>
-      <h5>Price*:</h5>
+      <h5>Price<span style="color:red;">*</span>:</h5>
       <input
         type="number"
         class="form-control"
@@ -33,7 +51,7 @@
         name="price"
         formControlName="price"
         required><br>
-      <h5>Delivery Time*:</h5>
+      <h5>Delivery Time<span style="color:red;">*</span>:</h5>
       <input
         type="number"
         class="form-control"
