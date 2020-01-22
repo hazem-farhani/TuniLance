@@ -1,0 +1,91 @@
+<div class="wrap">
+  <div class="content">
+      <div class="row">
+          <!--   Profile     -->
+          <div class="col-6 profile-info">
+              <form [formGroup]="profileForm" (ngSubmit)="save()">
+              <div class="content-center">
+                <div class="container">
+                    <img *ngIf="imgURL"  [src]="imgURL"  alt="../../../assets/img/faces/ayo-ogunseinde-2.jpg">
+                    <input #file type="file" accept='image/*' (change)="preview(file.files)"  style="display:none;"/>
+                    <button type="button" class="btn btn2" (click)='file.click()'>Change</button>
+                  </div>
+                  <p><i class="nc-icon "></i>lastName</p>
+                  <input type="text" formControlName="lastName" class="form-control">
+                  <p><i class="nc-icon "></i>firstName</p>
+                  <input type="text" formControlName="firstName" class="form-control" >
+                  <button class="btn btn-success" type="submit">Save</button>
+              </div>
+              <hr>
+              <div>
+                  <div class="div-line">
+                      <p><i class="nc-icon nc-pin-3"></i>Country</p>
+                      <input type="text" formControlName="country" class="form-control" >
+                  </div>
+                  <div class="div-line">
+                      <p><i class="nc-icon nc-single-02"></i>dateOfBirth</p>
+                      <input type="date" formControlName="dateOfBirth" class="form-control">
+                  </div>
+                  <div class="div-line">
+                      <p><i class="nc-icon nc-mobile"></i>Phone number</p>
+                      <input type="text" formControlName="phoneNumber" class="form-control" >
+                  </div>
+              </div>
+              <hr>
+              <div class="div-line">
+                  <p>Description:</p>
+              </div>
+              <textarea formControlName="description" class="form-control" ></textarea>
+              <hr>
+              </form>
+          </div>
+          
+          <div class="col-6" >
+            <mat-card>
+                <mat-card-title class="title-card-center">My Skills</mat-card-title>
+                <hr>
+                <mat-card-header>
+                    <form [formGroup]="skillForm" (ngSubmit)="addSkill()">
+                        <div class="row">
+                            <div class="col-10">
+                                 <input type="text" placeholder="skill name" class="form-control" formControlName="name">
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-success" type="submit" [disabled]="isinvalidSkillForm()">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-header>
+                <hr>
+                <mat-card-content>
+                    <table mat-table [dataSource]="dataSource" matSort  class="table table-hover table-striped">
+    
+                        <!-- id Column -->
+                        <ng-container matColumnDef="id">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Num </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+                             <!-- Name Column -->
+                       <ng-container matColumnDef="name">
+                                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                       </ng-container>
+                        <!-- Action Column -->
+                        <ng-container  matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef    > Actions </th>
+                            <td mat-cell *matCellDef="let element">
+                               <a  matTooltip="change skill" [routerLink]="" (click)="updateSkill(element.id)" ><mat-icon >edit</mat-icon></a>
+                                <a  matTooltip="delete skill" style="color:red" [routerLink]="" (click)="deleteSkill(element.id)"><mat-icon >delete</mat-icon></a>
+                    
+                            </td>
+                          </ng-container>
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+                     </table>
+                </mat-card-content>
+            </mat-card>
+         </div>
+      </div>
+  </div>
+</div>
+

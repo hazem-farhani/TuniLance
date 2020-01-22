@@ -35,11 +35,11 @@ export class SigninComponent implements OnInit {
             console.log(res.token);
             this.authService.setToken(res.token);
             const user = this.authService.getCurrentUser()
-              //.subscribe(user => {
+              .subscribe(user => {
                 console.log(user);
                 this.authService.setCurrentUser(user);
-                this.router.navigate(['/user-profile']);
-              //});
+                this.router.navigate(['/user-profile',user.id]);
+              });
           },
           err => {
             this.authenticated=false;

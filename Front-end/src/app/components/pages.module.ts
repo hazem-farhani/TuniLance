@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import {RouterModule} from '@angular/router';
 import { SigninComponent } from './signin/signin.component';
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { ProfileCardComponent } from './profile/profile-card/profile-card.compon
         SignupComponent,
         ProfileComponent,
         SigninComponent,
-        ProfileCardComponent
+        ProfileCardComponent,
+        ProfileEditComponent
     ]
 })
 export class PagesModule { }

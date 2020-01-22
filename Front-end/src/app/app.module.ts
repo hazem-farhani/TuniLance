@@ -24,12 +24,13 @@ import { ServiceAddComponent } from './components/services/service-add/service-a
 import { CommentListComponent } from './components/services/comment-list/comment-list.component';
 import { CommentComponent } from './components/services/comment-list/comment/comment.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatStepperModule, MatInputModule} from '@angular/material';
+import { MatStepperModule, MatInputModule, MatTableModule, MatCardModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { httpInterceptorProviders } from './http-interceptors';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { ProfileCardComponent } from './components/profile/profile-card/profile-card.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ProfileCardComponent } from './components/profile/profile-card/profile-
     CommentListComponent,
     CommentComponent,
     ProfileCardComponent,
+    ProfileEditComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,9 @@ import { ProfileCardComponent } from './components/profile/profile-card/profile-
 	MatFormFieldModule,
 	MatInputModule,
   MatIconModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTableModule,
+  MatCardModule
   ],
   providers: [
     httpInterceptorProviders,

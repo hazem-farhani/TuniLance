@@ -103,7 +103,8 @@ userDAO.prototype.update=function(user,callback){
          country:user.country,
          phoneNumber:user.phoneNumber,
          dateOfBirth:user.dateOfBirth,
-         photo:user.photo 
+         photo:user.photo,
+         description:user.description
      }
      this.Users.findOne({
          where:{id:id}
