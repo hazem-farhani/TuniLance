@@ -18,6 +18,9 @@ export class AuthService {
    API_URL = "http://localhost:5000/users";
 
 
+  getUser(id: number) {
+	return this.http.get(`${this.API_URL}/${id}`);
+  }
 
   login(user: User): Observable<any> {
     const authRequest = {
@@ -52,8 +55,8 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    //return this.http.get<any>(`${this.API_URL}/me`);
-    return JSON.parse(localStorage.getItem("currentUser"));
+    return this.http.get<any>(`${this.API_URL}/me`);
+    //return JSON.parse(localStorage.getItem("currentUser"));
   }
 
   setCurrentUser(user) {// save it in localstorage

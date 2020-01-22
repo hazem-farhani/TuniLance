@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-comment-list',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentListComponent implements OnInit {
   private newComment=""
-
-  constructor() { }
+  @Input() comments : any;
+  constructor(
+	private authService: AuthService,
+  ) { }
 
   ngOnInit() {
+	  this.authService.getUser(this.comments[0].userId).subscribe(user => console.log(user));
   }
 
   addComment() {

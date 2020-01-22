@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     private keyword = "";
     private categories = []
+	private user;
 
     constructor(
       private router: Router,
@@ -42,11 +43,15 @@ export class NavbarComponent implements OnInit {
     }
 
     getUser(){
-      return this.authService.getCurrentUser()
+      this.authService.getCurrentUser().subscribe(user => this.user = user)
     }
 
     removeHeader_Footer() {
         return this.router.url === '/signin' || this.router.url === '/signup';
     }
 
+	logout(){
+		this.authService.logout();
+		this.router.navigate(['/signin']);
+	}
 }

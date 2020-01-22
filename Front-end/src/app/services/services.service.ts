@@ -17,7 +17,7 @@ export class ServicesService {
     //return new Observable<Service>( (o) => o.next(s))
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.get<Service>(API_URL+"/"+id).pipe(
-      map(data => new Service(data.id, data.title, data.description, data.price, data.rating))
+      map(data => new Service(data.id, data.title, data.description, data.price, data.rating, data.comments))
     );
   }
 
