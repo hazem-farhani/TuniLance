@@ -18,9 +18,6 @@ export class AuthService {
    API_URL = "http://localhost:5000/users";
 
 
-  getUser(id: number) {
-	return this.http.get(`${this.API_URL}/${id}`);
-  }
 
   login(user: User): Observable<any> {
     const authRequest = {

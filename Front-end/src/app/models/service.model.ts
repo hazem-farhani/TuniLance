@@ -5,6 +5,6 @@ export class Service {
     public description: String,
     public price: number,
     public rating: number,
-	public comments: any
+  	public comments: any =null
   ){}
 }
